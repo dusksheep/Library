@@ -1,0 +1,42 @@
+.divForm{
+  display:table-row;
+}
+
+.form{
+  background-color: brown;
+  display: table;
+  width: fit-content;
+}
+
+.input{
+  display: table-cell;
+  width: 400px;
+  margin-top: 5px;
+}
+
+.label{
+  display:table-cell;
+}
+
+#inputTitle{
+  margin-right: 0px;
+  float:right;
+}
+
+#inputAuthor{
+  float:right;
+}
+
+#inputNumberOfPages{
+  float:right;
+}
+
+#inputReadStatus{
+  float:right;
+}
+
+#inputSubmit {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
