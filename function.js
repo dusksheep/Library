@@ -1,34 +1,64 @@
-let library = []
 const grid = document.querySelector(".grid");
-const btnNewBook = document.querySelector(".btnNewBook")
+const buttonNewBook = document.querySelector("#buttonNewBook")
 const formDiv = document.querySelector(".formDiv");
-window.addEventListener("pageshow", createForm);
 const formWraper = document.querySelector("#formWraper");
 const form = document.createElement("form");
+const buttonSubmitForm = document.querySelector("#buttonSubmitForm");
+const bookList = document.querySelector(".li");
+const buttonClearAll = document.querySelector("#buttonClearAll")
+
+let library = []
+window.addEventListener("pageshow", createForm);
+buttonSubmitForm.addEventListener("click", submitBook);
+buttonClearAll.addEventListener("click", clearLibrary);
+
+function clearLibrary() {
+  library.length = 0;
+  bookList.innerHTML = "";
+}
+
+
+
+function clearForm() {
+  inputTitle.value = "";
+  inputAuthor.value = "";
+  inputNumberOfPages.value = "";
+  inputReadStatus.value = "";
+}
 
 function book(title, author, numberOfPages, readStatus) {
   this.title = title;
   this.author = author;
   this.numberOfPages = numberOfPages;
   this.readStatus = readStatus;
-  form.remove();
+  clearForm();
 }
 
 
-
-
-function submitForm(event) {
+function submitBook() {
     library.push(new book(inputTitle.value, inputAuthor.value, inputNumberOfPages.value, inputReadStatus.value));
-    console.log(library[0]);
-    btnNewBook.disabled = false;
-    event.preventDefault();
-
+    
+    showBooks();
+    
+    function showBooks() {
+      bookList.innerHTML = "";
+      library.forEach(showItem);
+      function showItem(value, index, array) {
+        const bookItem = document.createElement("ul");
+        bookItem.innerHTML ="Title: " + value["title"] + ", author: " + value["author"] + ", # of pages: " + 
+        value["numberOfPages"] + " read status: " + value["readStatus"];
+        const closeButton = document.createElement("button");
+        closeButton.innerHTML = "delete this book";
+        //implement a function to the close button to delete this object from the array library
+        bookItem.appendChild(closeButton);
+        bookList.appendChild(bookItem);
+      }
+    }
 }
 
 function createForm() {
   form.innerHTML = "Book info";
   form.setAttribute("class", "form");
-  form.addEventListener("submit", submitForm);
 
   const divTitle = document.createElement("div");
   divTitle.setAttribute("class", "div");
@@ -82,17 +112,6 @@ function createForm() {
   inputReadStatus.setAttribute("id", "inputReadStatus");
   inputReadStatus.setAttribute("type", "text");
 
-  const inputSubmit = document.createElement("input");
-  inputSubmit.setAttribute("class", "input");
-  inputSubmit.setAttribute("id", "inputSubmit");
-  inputSubmit.setAttribute("type", "submit");
-
-  const buttonCancel = document.createElement("button");
-  buttonCancel.innerHTML = "cancel"
-  buttonCancel.setAttribute("id", "buttonCancel");
-
-  
-
   divTitle.appendChild(lableTitle);
   divTitle.appendChild(inputTitle);
   
@@ -109,15 +128,6 @@ function createForm() {
   form.appendChild(divAuthor);
   form.appendChild(divNumberOfPages);
   form.appendChild(divReadStatus);
-  form.appendChild(inputSubmit);
-  form.appendChild(buttonCancel);
-
+  
   formWraper.appendChild(form);
-
-  btnNewBook.disabled = true;
 }
-
-
-
-
-
