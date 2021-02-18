@@ -3,9 +3,8 @@
 }
 
 .form{
-  background-color: brown;
+  background-color: rgb(255, 255, 255);
   display: table;
-  width: fit-content;
   height: auto;
 }
 
@@ -29,10 +28,6 @@
 }
 
 #inputNumberOfPages{
-  float:right;
-}
-
-#inputReadStatus{
   float:right;
 }
 

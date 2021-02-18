@@ -1,5 +1,4 @@
 const grid = document.querySelector(".grid");
-const buttonNewBook = document.querySelector("#buttonNewBook")
 const formDiv = document.querySelector(".formDiv");
 const formWraper = document.querySelector("#formWraper");
 const form = document.createElement("form");
@@ -23,7 +22,8 @@ function clearForm() {
   inputTitle.value = "";
   inputAuthor.value = "";
   inputNumberOfPages.value = "";
-  inputReadStatus.value = "";
+  inputReadStatus1.checked = false;
+  inputReadStatus2.checked = false;
 }
 
 function book(title, author, numberOfPages, readStatus) {
@@ -36,7 +36,8 @@ function book(title, author, numberOfPages, readStatus) {
 
 
 function submitBook() {
-    library.push(new book(inputTitle.value, inputAuthor.value, inputNumberOfPages.value, inputReadStatus.value));
+  const readedOrNot = document.querySelector('input[name="readStatus"]:checked').value;
+    library.push(new book(inputTitle.value, inputAuthor.value, inputNumberOfPages.value, readedOrNot));
     
     showBooks();
     
@@ -72,9 +73,13 @@ function createForm() {
   divNumberOfPages.setAttribute("class", "div");
   divNumberOfPages.setAttribute("class", "divForm");
 
-  const divReadStatus = document.createElement("div");
-  divReadStatus.setAttribute("class", "div");
-  divReadStatus.setAttribute("class", "divForm");
+  const divReadStatus1 = document.createElement("div");
+  divReadStatus1.setAttribute("class", "div");
+  divReadStatus1.setAttribute("class", "divForm");
+
+  const divReadStatus2 = document.createElement("div");
+  divReadStatus2.setAttribute("class", "div");
+  divReadStatus2.setAttribute("class", "divForm");
 
   const lableTitle = document.createElement("label");
   lableTitle.innerHTML = "Title:";
@@ -87,10 +92,6 @@ function createForm() {
   const labelNumberOfPages = document.createElement("label");
   labelNumberOfPages.innerHTML = "Pages:";
   labelNumberOfPages.setAttribute("class", "formLabel");
-
-  const labelReadStatus = document.createElement("label");
-  labelReadStatus.innerHTML = "Read status:";
-  labelReadStatus.setAttribute("class", "formLabel");
 
   const inputTitle = document.createElement("input");
   inputTitle.setAttribute("class", "input");
@@ -107,10 +108,29 @@ function createForm() {
   inputNumberOfPages.setAttribute("id", "inputNumberOfPages");
   inputNumberOfPages.setAttribute("type", "text");
 
-  const inputReadStatus = document.createElement("input")
-  inputReadStatus.setAttribute("class", "input");
-  inputReadStatus.setAttribute("id", "inputReadStatus");
-  inputReadStatus.setAttribute("type", "text");
+  const inputReadStatus1 = document.createElement("input")
+  inputReadStatus1.setAttribute("id", "inputReadStatus1");
+  inputReadStatus1.setAttribute("value", "readed");
+  inputReadStatus1.setAttribute("type", "radio");
+  inputReadStatus1.setAttribute("name", "readStatus")
+
+
+  const inputReadStatus2 = document.createElement("input");
+  inputReadStatus2.setAttribute("id", "inputReadStatus2");
+  inputReadStatus2.setAttribute("value", "notReaded");
+  inputReadStatus2.setAttribute("type", "radio");
+  inputReadStatus2.setAttribute("name", "readStatus");
+  
+  const labelTest1 = document.createElement("label");
+  labelTest1.setAttribute("for", "inputReadStatus1");
+  labelTest1.innerHTML = "readed";
+
+  const labelTest2 = document.createElement("label");
+  labelTest2.setAttribute("for", "inputReadStatus2");
+  labelTest2.innerHTML = "not readed";
+
+  divReadStatus1.appendChild(labelTest1);
+  divReadStatus2.appendChild(labelTest2);
 
   divTitle.appendChild(lableTitle);
   divTitle.appendChild(inputTitle);
@@ -121,13 +141,14 @@ function createForm() {
   divNumberOfPages.appendChild(labelNumberOfPages);
   divNumberOfPages.appendChild(inputNumberOfPages);
   
-  divReadStatus.appendChild(labelReadStatus);
-  divReadStatus.appendChild(inputReadStatus);
+  divReadStatus1.appendChild(inputReadStatus1);
+  divReadStatus2.appendChild(inputReadStatus2);
 
   form.appendChild(divTitle);
   form.appendChild(divAuthor);
   form.appendChild(divNumberOfPages);
-  form.appendChild(divReadStatus);
+  form.appendChild(divReadStatus1);
+  form.appendChild(divReadStatus2);
   
   formWraper.appendChild(form);
 }
