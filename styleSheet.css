@@ -1,38 +1,73 @@
-.divForm{
-  display:table-row;
-}
+/*.divForm{
+  display:block;
+  background-color: chartreuse;
+  width: auto;
+  
+}*/
 
 .form{
+  margin-top: 10px;
   background-color: rgb(255, 255, 255);
-  display: table;
+  display: grid;
   height: auto;
+  width: max-content;
+  margin-bottom: 10px;
 }
 
 .input{
-  display: table-cell;
-  width: 400px;
-  margin-top: 5px;
-}
-
-.label{
-  display:table-cell;
+  display: inline-block;
+  margin-top: 10px;
+  width: 500px
 }
 
 #inputTitle{
-  margin-right: 0px;
-  float:right;
+  margin-left: 60px;
 }
 
 #inputAuthor{
-  float:right;
+  margin-left: 41px;
 }
 
 #inputNumberOfPages{
-  float:right;
+  margin-left: 50px;
+  margin-bottom: 10px;
 }
 
-#buttonSubmit {
-  margin-left: auto;
-  margin-right: auto;
+#divReadStatus3 {
+  
   display: block;
+}
+
+#inputReadStatus1 {
+  display: inline-block;
+}
+
+#inputReadStatus2 {
+  display:inline-block;
+}
+
+#divReadStatus1 {
+  
+  display: inline-block;
+  margin-left: 50px;
+}
+
+#divReadStatus2 {
+  
+  display: inline-block;
+  margin-left: 100px;
+}
+
+#divLibrary {
+  margin-top: 40px;
+}
+
+#buttonSubmitForm {
+  border-radius: 40px;
+  margin-left: 100px;
+}
+
+#closeButton {
+  border-radius: 10px;
+  margin-left: 40px;
 }
