@@ -6,8 +6,9 @@ const buttonSubmitForm = document.querySelector("#buttonSubmitForm");
 const bookList = document.querySelector(".li");
 const buttonClearAll = document.querySelector("#buttonClearAll")
 const labelBookCounter = 0;
-
 let library = []
+
+
 window.addEventListener("pageshow", createForm);
 buttonSubmitForm.addEventListener("click", submitBook);
 buttonClearAll.addEventListener("click", clearLibrary);
